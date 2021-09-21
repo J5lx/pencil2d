@@ -76,18 +76,12 @@ GNU General Public License for more details.
 #include "pegbaralignmentdialog.h"
 
 
-#ifdef GIT_TIMESTAMP
-#define BUILD_DATE S__GIT_TIMESTAMP
-#else
-#define BUILD_DATE __DATE__
-#endif
-
 #if defined(PENCIL2D_RELEASE_BUILD)
 #define PENCIL_WINDOW_TITLE QString("[*]Pencil2D v%1").arg(APP_VERSION)
 #elif defined(PENCIL2D_NIGHTLY_BUILD)
-#define PENCIL_WINDOW_TITLE QString("[*]Pencil2D Nightly Build %1").arg(BUILD_DATE)
+#define PENCIL_WINDOW_TITLE QString("[*]Pencil2D Nightly Build %1").arg(PENCIL2D_NIGHTLY_BUILD)
 #else
-#define PENCIL_WINDOW_TITLE QString("[*]Pencil2D Development Build %1").arg(BUILD_DATE)
+#define PENCIL_WINDOW_TITLE QString("[*]Pencil2D Development Build")
 #endif
 
 

@@ -19,4 +19,5 @@ setup_windows() {
   ($(which cmd) //c set; $(which cmd) //c "${vcvars} 2>&1>nul && set") | sort -st= -k1,1 | uniq -u >> "${GITHUB_ENV}"
 }
 
+echo "COMMIT_DATE=$(git log -1 --pretty=format:@%cd --date=unix)" >> "${GITHUB_ENV}"
 "setup_$(echo "${RUNNER_OS}" | tr '[A-Z]' '[a-z]')"

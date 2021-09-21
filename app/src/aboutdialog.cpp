@@ -17,6 +17,7 @@ GNU General Public License for more details.
 #include "aboutdialog.h"
 #include "ui_aboutdialog.h"
 
+#include <QDateTime>
 #include <QPushButton>
 #include <QSysInfo>
 #include <QClipboard>
@@ -45,16 +46,17 @@ void AboutDialog::init()
 #if defined(PENCIL2D_RELEASE_BUILD)
     devText << tr("Version: %1", "Version Number in About Dialog").arg(APP_VERSION);
 #elif defined(PENCIL2D_NIGHTLY_BUILD)
-    devText << "Nightly Build " __DATE__;
+    devText << "Nightly Build " PENCIL2D_NIGHTLY_BUILD;
 #else
-    devText << "Development Build " __DATE__;
+    devText << "Development Build";
 #endif
 
     devText << ""; // An empty line
 
 #if defined(GIT_EXISTS)
-    devText << "commit: " S__GIT_COMMIT_HASH
-            << "date: " S__GIT_TIMESTAMP
+    devText << "Commit: " S__GIT_COMMIT_HASH
+            << QString("Date: %1").arg(QDateTime::fromSecsSinceEpoch(GIT_TIMESTAMP, Qt::UTC)
+                                       .toString("yyyy-MM-dd HH:mm:ss"))
             << "";
 #endif
 

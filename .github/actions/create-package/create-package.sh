@@ -31,8 +31,8 @@ create_package_linux() {
     -executable=Pencil2D/usr/plugins/ffmpeg \
     ${gst_executables} \
     -appimage
-  mv Pencil2D*.AppImage* "pencil2d-linux-$1-$(date +%F).AppImage"
-  echo "::set-output name=package-name::pencil2d-linux-$1-$(date +%F).AppImage"
+  mv Pencil2D*.AppImage* "pencil2d-linux-$1.AppImage"
+  echo "::set-output name=package-name::pencil2d-linux-$1.AppImage"
   echo "::endgroup::"
 }
 
@@ -68,8 +68,8 @@ create_package_macos() {
   rm -rf macdeployqtfix-master master.zip
   popd >/dev/null
   echo "Create ZIP"
-  bsdtar caf "pencil2d-mac-$1-$(date +%F).zip" Pencil2D
-  echo "::set-output name=package-name::pencil2d-mac-$1-$(date +%F).zip"
+  bsdtar caf "pencil2d-mac-$1.zip" Pencil2D
+  echo "::set-output name=package-name::pencil2d-mac-$1.zip"
 }
 
 create_package_windows() {
@@ -92,8 +92,8 @@ create_package_windows() {
   local xbits="-x${platform#win}"
   cp "C:\\Program Files\\OpenSSL\\lib"{ssl,crypto}"-1_1${xbits/-x32/}.dll" Pencil2D/
   echo "Create ZIP"
-  "${WINDIR}\\System32\\tar" caf "pencil2d-${platform}-$1-$(date +%F).zip" Pencil2D
-  echo "::set-output name=package-name::pencil2d-${platform}-$1-$(date +%F).zip"
+  "${WINDIR}\\System32\\tar" caf "pencil2d-${platform}-$1.zip" Pencil2D
+  echo "::set-output name=package-name::pencil2d-${platform}-$1.zip"
 }
 
-"create_package_$(echo $RUNNER_OS | tr '[A-Z]' '[a-z]')" "${GITHUB_RUN_NUMBER}"
+"create_package_$(echo $RUNNER_OS | tr '[A-Z]' '[a-z]')" "${GITHUB_RUN_NUMBER}-$(date -ud "${COMMIT_DATE}" +%F)"
