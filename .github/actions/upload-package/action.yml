@@ -17,7 +17,9 @@ runs:
   - run: |
       python=python3
       test "${{runner.os}}" = "Windows" && python=python
-      "${python}" ./.github/actions/upload-package/nightly-build-upload.py ${{inputs.parent}} ${{inputs.path}}
+      for file in ${{inputs.files}}; do
+        "${python}" ./.github/actions/upload-package/nightly-build-upload.py ${{inputs.parent}} "${{inputs.path}}/${file}"
+      done
     shell: bash
     env:
       GOOGLE_PRIVATE_KEY: ${{inputs.google-private-key}}
