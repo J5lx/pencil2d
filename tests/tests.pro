@@ -22,6 +22,8 @@ DESTDIR = bin
 RESOURCES += data/tests.qrc
 
 INCLUDEPATH += \
+    vendor \
+    ../core_lib/vendor \
     ../core_lib/src/graphics \
     ../core_lib/src/graphics/bitmap \
     ../core_lib/src/graphics/vector \
@@ -33,7 +35,7 @@ INCLUDEPATH += \
     ../core_lib/src/managers
 
 HEADERS += \
-    src/catch.hpp
+    vendor/catch.hpp
 
 SOURCES += \
     src/main.cpp \

@@ -17,7 +17,8 @@ MOC_DIR = .moc
 OBJECTS_DIR = .obj
 UI_DIR = .ui
 
-INCLUDEPATH += src \
+INCLUDEPATH += vendor \
+    src \
     src/graphics \
     src/graphics/bitmap \
     src/graphics/vector \
@@ -30,7 +31,7 @@ INCLUDEPATH += src \
 
 PRECOMPILED_HEADER = src/corelib-pch.h
 
-HEADERS +=  \
+HEADERS += vendor/miniz.h \
     src/corelib-pch.h \
     src/graphics/bitmap/bitmapbucket.h \
     src/graphics/bitmap/bitmapimage.h \
@@ -110,14 +111,14 @@ HEADERS +=  \
     src/canvaspainter.h \
     src/soundplayer.h \
     src/movieexporter.h \
-    src/miniz.h \
     src/qminiz.h \
     src/activeframepool.h \
     src/external/platformhandler.h \
     src/selectionpainter.h
 
 
-SOURCES +=  src/graphics/bitmap/bitmapimage.cpp \
+SOURCES += vendor/miniz.cpp \
+    src/graphics/bitmap/bitmapimage.cpp \
     src/graphics/bitmap/bitmapbucket.cpp \
     src/graphics/vector/bezierarea.cpp \
     src/graphics/vector/beziercurve.cpp \
@@ -185,7 +186,6 @@ SOURCES +=  src/graphics/bitmap/bitmapimage.cpp \
     src/camerapainter.cpp \
     src/soundplayer.cpp \
     src/movieexporter.cpp \
-    src/miniz.cpp \
     src/qminiz.cpp \
     src/activeframepool.cpp \
     src/selectionpainter.cpp
