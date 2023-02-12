@@ -117,7 +117,7 @@ HEADERS += vendor/miniz.h \
     src/selectionpainter.h
 
 
-SOURCES += vendor/miniz.cpp \
+SOURCES += vendor/miniz.c \
     src/graphics/bitmap/bitmapimage.cpp \
     src/graphics/bitmap/bitmapbucket.cpp \
     src/graphics/vector/bezierarea.cpp \

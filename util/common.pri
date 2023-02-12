@@ -11,7 +11,7 @@ PENCIL2D_RELEASE {
     DEFINES += PENCIL2D_RELEASE_BUILD
 }
 
-CONFIG += c++11
+CONFIG += c++11 largefile
 
 win32-g++ {
     QMAKE_CXXFLAGS += -std=c++11
