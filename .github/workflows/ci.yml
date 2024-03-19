@@ -1,5 +1,7 @@
 name: Build & Tests
 
+env: { FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true }
+
 on:
   push:
     paths-ignore:
