@@ -11,9 +11,9 @@ jobs:
 
     steps:
     - name: Check out Pencil2D source code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - name: Check out the documentation repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: pencil2d/pencil-docs
         token: ${{secrets.docs_repo_token}}

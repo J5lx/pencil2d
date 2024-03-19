@@ -80,7 +80,7 @@ jobs:
         apt-get update -yq
         apt-get install -yq --no-install-suggests --no-install-recommends git
     - name: Check out repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Install dependencies
       uses: ./.github/actions/install-dependencies
       with:
@@ -115,11 +115,14 @@ jobs:
         qt: ${{matrix.qt}}
 
     - name: Upload package
+      id: upload
       if: runner.os != 'Linux' || matrix.qt == 5
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{steps.package.outputs.output-basename}}
         path: build/${{steps.package.outputs.output-basename}}*
+        # Packages are already compressed
+        compression-level: 0
     - name: Generate summary
       shell: bash
-      run: echo "Build will be available for download [here](https://get.pencil2d.org/@${{github.repository_owner}}/${{github.run_id}}/${{steps.package.outputs.output-basename}}) once the run is finished." > "${GITHUB_STEP_SUMMARY}"
+      run: echo "Build will be available for download [here](https://get.pencil2d.org/@${{github.repository_owner}}/${{steps.upload.outputs.artifact-id}}) once the run is finished." > "${GITHUB_STEP_SUMMARY}"
